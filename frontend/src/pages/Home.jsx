@@ -4,13 +4,6 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Heart, Users, GraduationCap, Handshake, ArrowRight, Award, TrendingUp, Globe, Play } from "lucide-react";
 import CountUp from "../components/CountUp";
 import ParallaxSection from "../components/ParallaxSection";
-import heroVideo from "../assets/images/hero-video.mp4";
-
-
-// 👇 Import your local images
-import heroImage from "../assets/images/hero.jpg";
-import childEducationImg from "../assets/images/child-education.jpg";
-
 
 const Home = () => {
   const { scrollYProgress } = useScroll();
@@ -28,7 +21,7 @@ const Home = () => {
     {
       title: "Child Education",
       description: "Providing quality education to underprivileged children through innovative learning programs",
-      image: childEducationImg,
+      image: "/assets/images/child-education.jpg",
       stats: "1500+ Children",
       link: "/campaigns/child-education"
     },
@@ -50,22 +43,22 @@ const Home = () => {
             style={{ scale }}
             className="w-full h-full"
           >
-            {/* 👇 Background vid */}
-          <video
-  autoPlay
-  muted
-  loop
-  playsInline
-  poster={heroImage}
-  className="absolute inset-0 w-full h-full object-cover"
->
-  <source src={heroVideo} type="video/mp4" />
-</video>
+            {/* Background video */}
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              poster="/assets/images/hero.jpg"
+              className="absolute inset-0 w-full h-full object-cover"
+            >
+              <source src="/assets/images/hero-video.mp4" type="video/mp4" />
+            </video>
 
-
-    {/* Keep the overlay gradients below */}
-    <div className="absolute inset-0 bg-black/50"></div>
-    <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/60"></div>
+            {/* Keep the overlay gradients below */}
+            <div className="absolute inset-0 bg-black/50"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/60"></div>
+            
             {/* Animated floating shapes */}
             <motion.div
               animate={{
