@@ -16,7 +16,7 @@ const OurImpact = () => {
 
   const stateWiseImpact = [
     {
-      state: "Maharashtra",
+      state: "Uttarakhand",
       beneficiaries: 2500,
       centers: 6,
       programs: ["Child Education", "Women Empowerment", "Healthcare"]
@@ -37,19 +37,19 @@ const OurImpact = () => {
 
   const successStories = [
     {
-      name: "Priya Sharma",
+      name: "Manju",
       story: "From our first batch of girl students, now a software engineer at a leading tech company",
       image: "https://i.pravatar.cc/300?img=5",
       year: "2015"
     },
     {
-      name: "Ramesh Patel",
+      name: "Krishna",
       story: "Started with our child education program, now runs his own business employing 10 people",
       image: "https://i.pravatar.cc/300?img=12",
       year: "2016"
     },
     {
-      name: "Meera Devi",
+      name: "Pooja",
       story: "Completed our women empowerment program, now trains other women in her village",
       image: "https://i.pravatar.cc/300?img=9",
       year: "2018"

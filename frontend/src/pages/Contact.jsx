@@ -28,19 +28,19 @@ const Contact = () => {
     {
       icon: MapPin,
       title: "Our Office",
-      details: ["123 Main Street, Andheri East", "Mumbai, Maharashtra - 400069", "India"],
+      details: ["Rai, Near Hnauman mandir", "Pithoragarh, Uttarakhand - 262501", "India"],
       color: "from-red-500 to-pink-600"
     },
     {
       icon: Phone,
       title: "Phone Numbers",
-      details: ["+91 80000 00000 (Main)", "+91 90000 00000 (Media)", "+91 70000 00000 (Donations)"],
+      details: ["+91 753388880 (Main)", "+91 753388880 (Donations)"],
       color: "from-blue-500 to-cyan-600"
     },
     {
       icon: Mail,
       title: "Email Address",
-      details: ["info@ghanshyamoli.org", "media@ghanshyamoli.org", "donate@ghanshyamoli.org"],
+      details: ["info@ghanshyamoli.org", "media@ghanshyamoli.org",],
       color: "from-green-500 to-emerald-600"
     },
     {
@@ -96,23 +96,12 @@ const Contact = () => {
 
   const offices = [
     {
-      city: "Mumbai (Head Office)",
-      address: "123 Main Street, Andheri East, Mumbai - 400069",
-      phone: "+91 80000 00000",
-      email: "mumbai@ghanshyamoli.org"
+      city: "Pithoragarh, Uttarakhand",
+      address: "Rai, Near Hanuman Mandir, Pithoragarh - 262501",
+      phone: "+91 75388880",
+      email: "Uk@ghanshyamoli.org"
     },
-    {
-      city: "Ahmedabad",
-      address: "456 Commerce Road, Satellite, Ahmedabad - 380015",
-      phone: "+91 81000 00000",
-      email: "ahmedabad@ghanshyamoli.org"
-    },
-    {
-      city: "Jaipur",
-      address: "789 Education Lane, Malviya Nagar, Jaipur - 302017",
-      phone: "+91 82000 00000",
-      email: "jaipur@ghanshyamoli.org"
-    },
+    
   ];
 
   return (
@@ -199,7 +188,7 @@ const Contact = () => {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
-                      placeholder="John Doe"
+                      placeholder="Priya"
                     />
                   </div>
                   
@@ -214,7 +203,7 @@ const Contact = () => {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
-                      placeholder="john@example.com"
+                      placeholder="pth@example.com"
                     />
                   </div>
                 </div>
@@ -299,7 +288,7 @@ const Contact = () => {
               {/* Map Placeholder */}
               <div className="bg-gray-200 rounded-2xl h-80 mb-8 overflow-hidden shadow-lg">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d241317.11609823277!2d72.74109995709658!3d19.082197839969304!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644edc1%3A0x5da4ed8f8d648c69!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1234567890"
+                  src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d111020.60482997706!2d80.13997813073455!3d29.592233555777845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x39a1258292c3a4d7%3A0x5f7c6ee54ffcdade!2sOli%20Niwas%2C%20dhanaura%2C%20Dharchula%20road%2C%20near%20maa%20kripa%20barat%20ghar%2C%20Pithoragarh%2C%20Uttarakhand%20262501!3m2!1d29.592259!2d80.2223795!5e0!3m2!1sen!2sin!4v1760595745732!5m2!1sen!2sin"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}

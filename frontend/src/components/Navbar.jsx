@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Heart, Phone } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -97,27 +97,53 @@ const Navbar = () => {
     setMobileDropdown(mobileDropdown === itemName ? null : itemName);
   };
 
+  const handleMobileLinkClick = () => {
+    setIsOpen(false);
+    setMobileDropdown(null);
+  };
+
   return (
-    <nav className={`bg-white fixed w-full z-40 top-[40px] md:top-[44px] transition-all duration-300 ${
+    <nav className={`bg-white fixed w-full z-40 top-[36px] sm:top-[40px] md:top-[44px] transition-all duration-300 ${
       scrolled ? 'shadow-lg' : 'shadow-md'
     }`}>
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-6 py-3">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3">
         {/* Logo */}
-        <Link to="/" className="flex items-center space-x-2 z-50 group">
+        <Link to="/" className="flex items-center space-x-2 z-50 group" onClick={handleMobileLinkClick}>
           <motion.div 
-            className="w-12 h-12 rounded-full bg-gradient-to-br from-green-600 to-green-800 flex items-center justify-center text-white font-bold shadow-lg"
+            className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-green-600 to-green-800 flex items-center justify-center text-white font-bold shadow-lg"
             whileHover={{ scale: 1.05, rotate: 5 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <span className="text-lg">GS</span>
+            <span className="text-base sm:text-lg">GS</span>
           </motion.div>
-          <div className="hidden md:block">
-            <span className="font-bold text-base lg:text-lg text-green-700 leading-tight block">
+          <div className="hidden sm:block">
+            <span className="font-bold text-sm sm:text-base lg:text-lg text-green-700 leading-tight block">
               Ghanshyam Oli
             </span>
-            <span className="text-xs text-gray-600">Child Welfare Society</span>
+            <span className="text-[10px] sm:text-xs text-gray-600">Child Welfare Society</span>
           </div>
         </Link>
+
+        {/* Mobile Quick Actions (Donate + Contact) - Visible on mobile/tablet */}
+        <div className="flex lg:hidden items-center gap-2 mr-2">
+          <Link 
+            to="/donate" 
+            className="flex items-center gap-1.5 bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 font-semibold text-xs sm:text-sm shadow-md hover:shadow-lg"
+            onClick={handleMobileLinkClick}
+          >
+            <Heart size={14} className="sm:w-4 sm:h-4" />
+            <span className="hidden xs:inline">Donate</span>
+          </Link>
+          
+          <Link 
+            to="/contact" 
+            className="flex items-center gap-1.5 bg-green-600 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full hover:bg-green-700 transition-all duration-300 font-semibold text-xs sm:text-sm shadow-md hover:shadow-lg"
+            onClick={handleMobileLinkClick}
+          >
+            <Phone size={14} className="sm:w-4 sm:h-4" />
+            <span className="hidden xs:inline">Call</span>
+          </Link>
+        </div>
 
         {/* Desktop Menu */}
         <div className="hidden lg:flex items-center space-x-2">
@@ -151,7 +177,7 @@ const Navbar = () => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute top-full left-0 mt-2 bg-white shadow-xl rounded-xl overflow-hidden border border-gray-100 min-w-[280px]"
+                      className="absolute top-full left-0 mt-2 bg-white shadow-xl rounded-xl overflow-hidden border border-gray-100 min-w-[280px] z-50"
                     >
                       <div className="p-2">
                         {item.subItems.map((sub, index) => (
@@ -183,7 +209,7 @@ const Navbar = () => {
             ))}
           </ul>
 
-          {/* Donate Button */}
+          {/* Desktop Donate Button */}
           <Link 
             to="/donate" 
             className="ml-4 bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-6 py-2.5 rounded-full hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 font-semibold text-sm shadow-md hover:shadow-lg transform hover:scale-105"
@@ -198,7 +224,7 @@ const Navbar = () => {
           className="lg:hidden text-green-700 z-50 p-2 hover:bg-green-50 rounded-lg transition-colors"
           aria-label="Toggle menu"
         >
-          {isOpen ? <X size={26} /> : <Menu size={26} />}
+          {isOpen ? <X size={24} className="sm:w-[26px] sm:h-[26px]" /> : <Menu size={24} className="sm:w-[26px] sm:h-[26px]" />}
         </button>
       </div>
 
@@ -212,31 +238,80 @@ const Navbar = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 bg-black/50 lg:hidden z-30"
+              className="fixed inset-0 bg-black/60 lg:hidden z-30"
               style={{ top: '0' }}
             />
 
-            {/* Menu */}
+            {/* Menu Panel */}
             <motion.div
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
-              transition={{ type: 'tween', duration: 0.3 }}
-              className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-white shadow-2xl lg:hidden overflow-y-auto z-40"
+              transition={{ type: 'tween', duration: 0.3, ease: 'easeInOut' }}
+              className="fixed top-0 right-0 bottom-0 w-[90%] max-w-sm bg-white shadow-2xl lg:hidden overflow-y-auto z-40"
             >
-              <div className="pt-20 pb-6 px-6">
+              {/* Mobile Menu Header */}
+              <div className="sticky top-0 bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-4 shadow-md z-10">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="font-bold text-lg">Menu</h3>
+                    <p className="text-xs text-green-100">Navigate our site</p>
+                  </div>
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+                  >
+                    <X size={24} />
+                  </button>
+                </div>
+              </div>
+
+              <div className="px-6 py-6">
+                {/* Quick Contact Info in Mobile Menu */}
+                <div className="bg-green-50 rounded-xl p-4 mb-6 border border-green-100">
+                  <h4 className="font-semibold text-green-800 text-sm mb-3 flex items-center gap-2">
+                    <Phone size={16} />
+                    Quick Contact
+                  </h4>
+                  <div className="space-y-2">
+                    <a 
+                      href="tel:+917525838880" 
+                      className="flex items-center gap-2 text-sm text-gray-700 hover:text-green-700 transition-colors"
+                      onClick={handleMobileLinkClick}
+                    >
+                      <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                        <Phone size={14} className="text-green-600" />
+                      </div>
+                      <span>+91 7525838880</span>
+                    </a>
+                    <a 
+                      href="mailto:info@ghanshyamoli.org" 
+                      className="flex items-center gap-2 text-sm text-gray-700 hover:text-green-700 transition-colors"
+                      onClick={handleMobileLinkClick}
+                    >
+                      <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                        <svg className="w-3.5 h-3.5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                      </div>
+                      <span className="truncate">info@ghanshyamoli.org</span>
+                    </a>
+                  </div>
+                </div>
+
+                {/* Navigation Links */}
                 <ul className="space-y-1">
                   {navItems.map((item) => (
-                    <li key={item.name} className="border-b border-gray-100 pb-1">
+                    <li key={item.name} className="border-b border-gray-100 last:border-b-0">
                       {item.subItems ? (
                         <>
                           <button
                             onClick={() => toggleMobileDropdown(item.name)}
-                            className="w-full flex items-center justify-between py-3 font-semibold text-gray-800 hover:text-green-700 transition-colors"
+                            className="w-full flex items-center justify-between py-3.5 font-semibold text-gray-800 hover:text-green-700 transition-colors text-left"
                           >
                             <span>{item.name}</span>
                             <ChevronDown
-                              className={`w-5 h-5 transition-transform ${
+                              className={`w-5 h-5 transition-transform duration-300 ${
                                 mobileDropdown === item.name ? 'rotate-180' : ''
                               }`}
                             />
@@ -247,20 +322,27 @@ const Navbar = () => {
                                 initial={{ height: 0, opacity: 0 }}
                                 animate={{ height: 'auto', opacity: 1 }}
                                 exit={{ height: 0, opacity: 0 }}
-                                transition={{ duration: 0.2 }}
-                                className="ml-4 mt-2 space-y-1 overflow-hidden"
+                                transition={{ duration: 0.3, ease: 'easeInOut' }}
+                                className="overflow-hidden"
                               >
-                                {item.subItems.map((sub) => (
-                                  <li key={sub.name}>
-                                    <Link
-                                      to={sub.path}
-                                      className="block py-2 px-3 text-gray-600 hover:text-green-700 hover:bg-green-50 rounded-lg text-sm transition-colors"
-                                      onClick={() => setIsOpen(false)}
-                                    >
-                                      {sub.name}
-                                    </Link>
-                                  </li>
-                                ))}
+                                <div className="ml-4 mt-2 mb-3 space-y-1 border-l-2 border-green-200 pl-3">
+                                  {item.subItems.map((sub) => (
+                                    <li key={sub.name}>
+                                      <Link
+                                        to={sub.path}
+                                        className="block py-2.5 px-3 text-gray-600 hover:text-green-700 hover:bg-green-50 rounded-lg text-sm transition-all duration-200"
+                                        onClick={handleMobileLinkClick}
+                                      >
+                                        <div className="font-medium">{sub.name}</div>
+                                        {sub.description && (
+                                          <div className="text-xs text-gray-500 mt-0.5">
+                                            {sub.description}
+                                          </div>
+                                        )}
+                                      </Link>
+                                    </li>
+                                  ))}
+                                </div>
                               </motion.ul>
                             )}
                           </AnimatePresence>
@@ -268,8 +350,10 @@ const Navbar = () => {
                       ) : (
                         <Link
                           to={item.path}
-                          className="block py-3 font-semibold text-gray-800 hover:text-green-700 transition-colors"
-                          onClick={() => setIsOpen(false)}
+                          className={`block py-3.5 font-semibold hover:text-green-700 transition-colors ${
+                            location.pathname === item.path ? 'text-green-700' : 'text-gray-800'
+                          }`}
+                          onClick={handleMobileLinkClick}
                         >
                           {item.name}
                         </Link>
@@ -278,14 +362,33 @@ const Navbar = () => {
                   ))}
                 </ul>
 
-                {/* Mobile Donate Button */}
-                <Link
-                  to="/donate"
-                  className="block w-full text-center bg-gradient-to-r from-yellow-500 to-yellow-600 text-white py-3 rounded-full mt-6 font-semibold shadow-lg hover:shadow-xl transition-all"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Donate Now
-                </Link>
+                {/* Mobile Action Buttons */}
+                <div className="mt-8 space-y-3 pb-6">
+                  <Link
+                    to="/donate"
+                    className="flex items-center justify-center gap-2 w-full text-center bg-gradient-to-r from-yellow-500 to-yellow-600 text-white py-3.5 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all active:scale-95"
+                    onClick={handleMobileLinkClick}
+                  >
+                    <Heart size={18} />
+                    Donate Now
+                  </Link>
+                  
+                  <Link
+                    to="/contact"
+                    className="flex items-center justify-center gap-2 w-full text-center bg-green-600 text-white py-3.5 rounded-xl font-semibold shadow-md hover:shadow-lg transition-all active:scale-95"
+                    onClick={handleMobileLinkClick}
+                  >
+                    <Phone size={18} />
+                    Contact Us
+                  </Link>
+                </div>
+
+                {/* Footer in Mobile Menu */}
+                <div className="border-t border-gray-200 pt-6 mt-6">
+                  <p className="text-xs text-gray-500 text-center">
+                    © 2025 Ghanshyam Oli Child Welfare Society
+                  </p>
+                </div>
               </div>
             </motion.div>
           </>

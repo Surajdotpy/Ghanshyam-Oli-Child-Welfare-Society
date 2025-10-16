@@ -7,7 +7,7 @@ import CountUp from "../../components/CountUp";
 const Reports = () => {
   const annualReports = [
     {
-      year: "2023",
+      year: "2024",
       title: "Annual Report 2023",
       description: "A comprehensive overview of our programs, impact, and financial performance",
       highlights: {
@@ -20,7 +20,7 @@ const Reports = () => {
       file: "#"
     },
     {
-      year: "2022",
+      year: "2023",
       title: "Annual Report 2022",
       description: "Year of expansion and increased impact across multiple verticals",
       highlights: {
@@ -33,7 +33,7 @@ const Reports = () => {
       file: "#"
     },
     {
-      year: "2021",
+      year: "2022",
       title: "Annual Report 2021",
       description: "Resilience and adaptation during challenging times",
       highlights: {

@@ -9,6 +9,7 @@ const Topbar = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
+  const [showMobileSearch, setShowMobileSearch] = useState(false);
   const searchRef = useRef(null);
   const navigate = useNavigate();
 
@@ -53,6 +54,7 @@ const Topbar = () => {
     navigate(result.path);
     setSearchQuery("");
     setIsSearchFocused(false);
+    setShowMobileSearch(false);
     
     if (result.path.includes('#')) {
       setTimeout(() => {
@@ -126,63 +128,85 @@ const Topbar = () => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-green-700 via-green-800 to-green-900 text-white text-xs md:text-sm py-2.5 px-4 md:px-6 fixed w-full top-0 z-50 shadow-md">
-      <div className="max-w-7xl mx-auto flex justify-between items-center gap-4">
-        {/* Left Side: Contact Info */}
-        <div className="hidden lg:flex gap-4">
-          <motion.a 
-            href="mailto:info@ghanshyamoli.org" 
-            className="flex items-center gap-1.5 hover:text-yellow-300 transition-colors group"
-            aria-label="Email us"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Mail size={14} className="group-hover:animate-bounce" /> 
-            <span>info@ghanshyamoli.org</span>
-          </motion.a>
-          <motion.a 
-            href="tel:+917525838880" 
-            className="flex items-center gap-1.5 hover:text-yellow-300 transition-colors group"
-            aria-label="Call us"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Phone size={14} className="group-hover:animate-shake" /> 
-            <span>+917525838880</span>
-          </motion.a>
-        </div>
+    <>
+      <div className="bg-gradient-to-r from-green-700 via-green-800 to-green-900 text-white text-xs md:text-sm py-2 md:py-2.5 px-3 md:px-6 fixed w-full top-0 z-50 shadow-md">
+        <div className="max-w-7xl mx-auto flex justify-between items-center gap-2 md:gap-4">
+          {/* Left Side: Contact Info */}
+          <div className="flex items-center gap-2 md:gap-4">
+            {/* Desktop Contact */}
+            <div className="hidden lg:flex gap-4">
+              <motion.a 
+                href="mailto:info@ghanshyamoli.org" 
+                className="flex items-center gap-1.5 hover:text-yellow-300 transition-colors group"
+                aria-label="Email us"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Mail size={14} className="group-hover:animate-bounce" /> 
+                <span>info@ghanshyamoli.org</span>
+              </motion.a>
+              <motion.a 
+                href="tel:+917525838880" 
+                className="flex items-center gap-1.5 hover:text-yellow-300 transition-colors group"
+                aria-label="Call us"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Phone size={14} className="group-hover:animate-shake" /> 
+                <span>+917525838880</span>
+              </motion.a>
+            </div>
 
-        {/* Mobile Contact */}
-        <motion.a 
-          href="tel:+917525838880" 
-          className="flex lg:hidden items-center gap-1.5 hover:text-yellow-300 transition-colors"
-          aria-label="Call us"
-          whileHover={{ scale: 1.05 }}
-        >
-          <Phone size={14} /> 
-          <span className="hidden sm:inline">+91 7525838880</span>
-        </motion.a>
+            {/* Mobile Contact - Improved */}
+            <div className="flex lg:hidden items-center gap-2">
+              <motion.a 
+                href="tel:+917525838880" 
+                className="flex items-center gap-1 hover:text-yellow-300 transition-colors bg-white/10 px-2 py-1 rounded-full backdrop-blur-sm"
+                aria-label="Call us"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Phone size={12} /> 
+                <span className="text-[10px] sm:text-xs">Call</span>
+              </motion.a>
+              
+              <motion.a 
+                href="mailto:info@ghanshyamoli.org" 
+                className="hidden xs:flex items-center gap-1 hover:text-yellow-300 transition-colors bg-white/10 px-2 py-1 rounded-full backdrop-blur-sm"
+                aria-label="Email us"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Mail size={12} /> 
+                <span className="text-[10px] sm:text-xs">Email</span>
+              </motion.a>
+            </div>
+          </div>
 
-        {/* Right Side: Search Box + Social Media */}
-        <div className="flex items-center gap-4 md:gap-6">
-          {/* Search Box */}
-          <motion.div 
-            ref={searchRef} 
-            className="relative"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <form onSubmit={handleSearchSubmit}>
+          {/* Right Side: Search Box + Social Media */}
+          <div className="flex items-center gap-2 md:gap-4">
+            {/* Desktop Search Box */}
+            <motion.div 
+              ref={searchRef} 
+              className="relative hidden md:block"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+            >
               <div className="relative flex items-center">
-                {/* Search Input */}
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onFocus={() => setIsSearchFocused(true)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault();
+                      handleSearchSubmit(e);
+                    }
+                  }}
                   placeholder="Search"
-                  className="w-40 sm:w-48 md:w-56 lg:w-64 pl-9 pr-10 py-2 rounded-full 
+                  className="w-48 md:w-56 lg:w-64 pl-9 pr-10 py-2 rounded-full 
                     bg-white/10 backdrop-blur-sm
                     border border-white/20
                     text-white placeholder:text-white/60
@@ -193,14 +217,12 @@ const Topbar = () => {
                   style={{ caretColor: 'white' }}
                 />
                 
-                {/* Search Icon - Positioned Absolutely Inside Input */}
                 <Search 
                   className="absolute left-3 top-1/2 -translate-y-1/2 text-white pointer-events-none z-10" 
                   size={15} 
                   strokeWidth={2.5}
                 />
                 
-                {/* Loading Spinner - Right Side */}
                 {isSearching && (
                   <div className="absolute right-3 top-1/2 -translate-y-1/2 z-10">
                     <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
@@ -208,7 +230,7 @@ const Topbar = () => {
                 )}
               </div>
 
-              {/* Search Results Dropdown */}
+              {/* Desktop Search Results Dropdown */}
               <AnimatePresence>
                 {isSearchFocused && searchResults.length > 0 && (
                   <motion.div
@@ -291,35 +313,145 @@ const Topbar = () => {
                   </div>
                 </motion.div>
               )}
-            </form>
-          </motion.div>
+            </motion.div>
 
-          {/* Divider */}
-          <div className="hidden md:block w-px h-6 bg-white/30"></div>
+            {/* Mobile Search Button */}
+            <motion.button
+              onClick={() => setShowMobileSearch(!showMobileSearch)}
+              className="md:hidden p-1.5 hover:bg-white/10 rounded-full transition-colors backdrop-blur-sm"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              aria-label="Search"
+            >
+              <Search size={16} />
+            </motion.button>
 
-          {/* Social Media Icons */}
-          <div className="flex gap-2 md:gap-3">
-            {socialLinks.map((social, index) => (
-              <motion.a
-                key={social.name}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Visit our ${social.name} page`}
-                className={`transition-all duration-300 ${social.color} p-1.5 rounded-full hover:bg-white/10`}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ scale: 1.2, rotate: 5 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <social.icon size={16} strokeWidth={2} />
-              </motion.a>
-            ))}
+            {/* Divider */}
+            <div className="hidden sm:block w-px h-5 md:h-6 bg-white/30"></div>
+
+            {/* Social Media Icons */}
+            <div className="flex gap-1.5 md:gap-3">
+              {socialLinks.map((social, index) => (
+                <motion.a
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Visit our ${social.name} page`}
+                  className={`transition-all duration-300 ${social.color} p-1 md:p-1.5 rounded-full hover:bg-white/10`}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ scale: 1.2, rotate: 5 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <social.icon size={14} className="md:w-4 md:h-4" strokeWidth={2} />
+                </motion.a>
+              ))}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+
+      {/* Mobile Search Overlay */}
+      <AnimatePresence>
+        {showMobileSearch && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/80 z-[60] md:hidden"
+            onClick={() => setShowMobileSearch(false)}
+          >
+            <motion.div
+              initial={{ y: -100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -100, opacity: 0 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white p-4 rounded-b-2xl shadow-2xl"
+            >
+              <div className="flex items-center gap-2 mb-4">
+                <Search className="text-green-600" size={20} />
+                <h3 className="font-semibold text-gray-800">Search</h3>
+              </div>
+              
+              <div className="relative">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && searchResults.length > 0) {
+                      e.preventDefault();
+                      handleResultClick(searchResults[0]);
+                    }
+                  }}
+                  placeholder="Search for programs, articles..."
+                  autoFocus
+                  className="w-full pl-4 pr-10 py-3 rounded-xl border-2 border-green-200 
+                    focus:border-green-500 focus:outline-none text-gray-800 text-sm"
+                />
+                
+                {isSearching && (
+                  <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                    <div className="w-5 h-5 border-2 border-green-200 border-t-green-600 rounded-full animate-spin"></div>
+                  </div>
+                )}
+              </div>
+
+              {/* Mobile Search Results */}
+              {searchResults.length > 0 && (
+                <div className="mt-4 max-h-[60vh] overflow-y-auto space-y-2">
+                  {searchResults.map((result) => {
+                    const TypeIcon = getTypeIcon(result.type);
+                    return (
+                      <button
+                        key={result.id}
+                        onClick={() => handleResultClick(result)}
+                        className="w-full text-left p-3 hover:bg-green-50 rounded-xl border border-gray-100 transition-all active:scale-95"
+                      >
+                        <div className="flex items-start gap-3">
+                          <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${getTypeColor(result.type)}`}>
+                            <TypeIcon size={18} />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h4 className="font-semibold text-gray-800 text-sm mb-1 line-clamp-1">
+                              {highlightText(result.title, searchQuery)}
+                            </h4>
+                            <p className="text-xs text-gray-600 line-clamp-2 mb-2">
+                              {highlightText(result.snippet, searchQuery)}
+                            </p>
+                            <div className="flex items-center gap-2">
+                              <span className={`text-[10px] px-2 py-0.5 rounded-full ${getTypeColor(result.type)} font-medium capitalize`}>
+                                {result.type}
+                              </span>
+                              <span className="text-[10px] text-gray-400">
+                                {result.page}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+
+              {searchQuery && searchResults.length === 0 && !isSearching && (
+                <div className="mt-6 text-center py-8">
+                  <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Search size={28} className="text-gray-300" />
+                  </div>
+                  <p className="text-gray-600 text-sm font-medium mb-1">No results found</p>
+                  <p className="text-gray-400 text-xs">Try different keywords</p>
+                </div>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 
