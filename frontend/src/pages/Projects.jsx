@@ -32,7 +32,7 @@ const Projects = () => {
       icon: BookOpen,
       title: "Child Education",
       description: "Providing quality education to underprivileged children through our learning centers and scholarship programs. We focus on holistic development including academics, sports, and arts.",
-      image: "/assets/child-education.jpg",
+      image: "/assets/images/child-education.jpg",
       stats: { 
         beneficiaries: "1500+", 
         centers: "12", 
@@ -48,7 +48,7 @@ const Projects = () => {
       icon: Users,
       title: "Women Empowerment",
       description: "Skill development, vocational training, and entrepreneurship programs for women to achieve economic independence. We provide mentorship, financial literacy, and business support.",
-      image: "/assets/women-empowerment.jpg",
+      image: "/assets/images/women-empowerment.jpg",
       stats: { 
         beneficiaries: "800+", 
         programs: "15", 
@@ -64,7 +64,7 @@ const Projects = () => {
       icon: GraduationCap,
       title: "Girls Education",
       description: "Breaking barriers and creating opportunities for girls through education, mentorship, and support programs. Fighting dropout rates and ensuring higher education access.",
-      image: "/assets/girls-education.jpg",
+      image: "/assets/images/girls-education.jpg",
       stats: { 
         beneficiaries: "2000+", 
         dropout: "-60%", 
@@ -80,7 +80,7 @@ const Projects = () => {
       icon: Heart,
       title: "Healthcare & Nutrition",
       description: "Ensuring access to basic healthcare services, nutrition programs, and health awareness campaigns in underserved communities. Regular health check-ups and medical camps.",
-      image: "/assets/healthcare.jpg",
+      image: "/assets/images/healthcare.jpg",
       stats: { 
         beneficiaries: "3000+", 
         camps: "24", 
@@ -96,7 +96,7 @@ const Projects = () => {
       icon: Home,
       title: "Rural Development",
       description: "Comprehensive rural development programs focusing on infrastructure, clean water, sanitation, and sustainable livelihood opportunities for rural communities.",
-      image: "/assets/rural-development.jpg",
+      image: "/assets/images/rural-development.jpg",
       stats: { 
         villages: "35+", 
         families: "1200+", 
@@ -112,7 +112,7 @@ const Projects = () => {
       icon: Briefcase,
       title: "Skill Development & Employment",
       description: "Bridging the gap between education and employment through industry-relevant skill training, placement assistance, and career counseling for youth.",
-      image: "/assets/skill-development.jpg",
+      image: "/assets/images/skill-development.jpg",
       stats: { 
         trained: "950+", 
         placed: "720+", 
@@ -130,7 +130,7 @@ const Projects = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
+        staggerChildren: 0.15
       }
     }
   };
@@ -150,10 +150,10 @@ const Projects = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-green-700 via-green-800 to-green-900 text-white py-20 px-6 overflow-hidden">
+      <section className="relative bg-gradient-to-r from-green-700 via-green-800 to-green-900 text-white py-16 md:py-20 px-4 md:px-6 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-yellow-300 rounded-full blur-3xl"></div>
+          <div className="absolute top-0 left-0 w-64 md:w-96 h-64 md:h-96 bg-white rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-0 w-64 md:w-96 h-64 md:h-96 bg-yellow-300 rounded-full blur-3xl"></div>
         </div>
         
         <motion.div 
@@ -166,46 +166,47 @@ const Projects = () => {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.2, type: "spring" }}
-            className="inline-block bg-white/20 backdrop-blur-sm px-6 py-2 rounded-full mb-6"
+            className="inline-block bg-white/20 backdrop-blur-sm px-4 md:px-6 py-2 rounded-full mb-4 md:mb-6"
           >
-            <span className="font-semibold text-yellow-300">🌟 Impact-Driven Initiatives</span>
+            <span className="font-semibold text-yellow-300 text-sm md:text-base">🌟 Impact-Driven Initiatives</span>
           </motion.div>
           
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">
             Our Programs & Campaigns
           </h1>
-          <p className="text-lg md:text-xl text-green-100 max-w-2xl mx-auto">
+          <p className="text-base md:text-lg lg:text-xl text-green-100 max-w-2xl mx-auto px-4">
             Transforming lives through education, empowerment, and opportunity across multiple social impact areas
           </p>
           
           {/* Quick Stats */}
-          <div className="grid grid-cols-3 gap-4 mt-12 max-w-3xl mx-auto">
-            <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
-              <div className="text-3xl font-bold text-yellow-300">6</div>
-              <div className="text-sm text-green-100">Active Programs</div>
+          <div className="grid grid-cols-3 gap-3 md:gap-4 mt-8 md:mt-12 max-w-3xl mx-auto px-4">
+            <div className="bg-white/10 backdrop-blur-md rounded-lg md:rounded-xl p-3 md:p-4 border border-white/20">
+              <div className="text-2xl md:text-3xl font-bold text-yellow-300">6</div>
+              <div className="text-xs md:text-sm text-green-100">Active Programs</div>
             </div>
-            <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
-              <div className="text-3xl font-bold text-yellow-300">8K+</div>
-              <div className="text-sm text-green-100">Lives Impacted</div>
+            <div className="bg-white/10 backdrop-blur-md rounded-lg md:rounded-xl p-3 md:p-4 border border-white/20">
+              <div className="text-2xl md:text-3xl font-bold text-yellow-300">8K+</div>
+              <div className="text-xs md:text-sm text-green-100">Lives Impacted</div>
             </div>
-            <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
-              <div className="text-3xl font-bold text-yellow-300">100+</div>
-              <div className="text-sm text-green-100">Locations</div>
+            <div className="bg-white/10 backdrop-blur-md rounded-lg md:rounded-xl p-3 md:p-4 border border-white/20">
+              <div className="text-2xl md:text-3xl font-bold text-yellow-300">100+</div>
+              <div className="text-xs md:text-sm text-green-100">Locations</div>
             </div>
           </div>
         </motion.div>
       </section>
 
-      {/* Programs Grid */}
-      <section className="py-20 px-6">
+      {/* Programs Grid - FIXED LAYOUT */}
+      <section className="py-12 md:py-20 px-4 md:px-6">
         <motion.div 
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-50px" }}
           className="max-w-7xl mx-auto"
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+          {/* Grid with proper responsive columns */}
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8">
             {projects.map((project, idx) => (
               <motion.div
                 key={project.id}
@@ -215,7 +216,7 @@ const Projects = () => {
                 className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 group scroll-mt-24"
               >
                 {/* Image Section */}
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-48 md:h-56 lg:h-64 overflow-hidden">
                   <img 
                     src={project.image} 
                     alt={project.title}
@@ -224,37 +225,37 @@ const Projects = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                   
                   {/* Icon Badge */}
-                  <div className={`absolute top-4 left-4 bg-gradient-to-r ${project.gradient} p-3 rounded-xl shadow-lg`}>
-                    <project.icon className="w-6 h-6 text-white" />
+                  <div className={`absolute top-3 md:top-4 left-3 md:left-4 bg-gradient-to-r ${project.gradient} p-2.5 md:p-3 rounded-lg md:rounded-xl shadow-lg`}>
+                    <project.icon className="w-5 h-5 md:w-6 md:h-6 text-white" />
                   </div>
                   
                   {/* Category Badge */}
-                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-4 py-1 rounded-full text-sm font-semibold text-gray-800">
+                  <div className="absolute top-3 md:top-4 right-3 md:right-4 bg-white/90 backdrop-blur-sm px-3 md:px-4 py-1 rounded-full text-xs md:text-sm font-semibold text-gray-800">
                     Active Program
                   </div>
                 </div>
 
                 {/* Content Section */}
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-gray-800 mb-3 group-hover:text-green-700 transition-colors">
+                <div className="p-5 md:p-6">
+                  <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-2 md:mb-3 group-hover:text-green-700 transition-colors">
                     {project.title}
                   </h3>
                   
-                  <p className="text-gray-600 mb-6 leading-relaxed">
+                  <p className="text-sm md:text-base text-gray-600 mb-4 md:mb-6 leading-relaxed line-clamp-3">
                     {project.description}
                   </p>
 
-                  {/* Stats Grid - FIXED */}
-                  <div className="grid grid-cols-3 gap-3 mb-6">
+                  {/* Stats Grid */}
+                  <div className="grid grid-cols-3 gap-2 md:gap-3 mb-4 md:mb-6">
                     {Object.entries(project.stats).map(([key, value]) => (
                       <div 
                         key={key} 
-                        className={`text-center ${project.statBg} p-3 rounded-lg border`}
+                        className={`text-center ${project.statBg} p-2 md:p-3 rounded-lg border`}
                       >
-                        <div className={`text-xl font-bold ${project.statText}`}>
+                        <div className={`text-lg md:text-xl font-bold ${project.statText}`}>
                           {value}
                         </div>
-                        <div className="text-xs text-gray-600 capitalize mt-1">
+                        <div className="text-[10px] md:text-xs text-gray-600 capitalize mt-0.5 md:mt-1">
                           {key.replace(/([A-Z])/g, ' $1').trim()}
                         </div>
                       </div>
@@ -262,19 +263,19 @@ const Projects = () => {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex gap-3">
+                  <div className="flex flex-col sm:flex-row gap-2 md:gap-3">
                     <Link 
                       to={`/campaigns/${project.id}`}
-                      className={`flex-1 bg-gradient-to-r ${project.gradient} text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all flex items-center justify-center gap-2 group/btn`}
+                      className={`flex-1 bg-gradient-to-r ${project.gradient} text-white px-4 md:px-6 py-2.5 md:py-3 rounded-lg font-semibold hover:shadow-lg transition-all flex items-center justify-center gap-2 group/btn text-sm md:text-base`}
                     >
                       Learn More
-                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                      <ArrowRight className="w-3.5 h-3.5 md:w-4 md:h-4 group-hover/btn:translate-x-1 transition-transform" />
                     </Link>
                     <Link 
                       to="/donate"
-                      className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                      className="sm:flex-none bg-yellow-500 hover:bg-yellow-600 text-white px-4 md:px-6 py-2.5 md:py-3 rounded-lg font-semibold hover:shadow-lg transition-all flex items-center justify-center gap-2 text-sm md:text-base"
                     >
-                      <Heart className="w-4 h-4" />
+                      <Heart className="w-3.5 h-3.5 md:w-4 md:h-4" />
                       Donate
                     </Link>
                   </div>
@@ -286,23 +287,23 @@ const Projects = () => {
       </section>
 
       {/* Impact Highlights */}
-      <section className="py-16 px-6 bg-gradient-to-br from-green-50 to-blue-50">
+      <section className="py-12 md:py-16 px-4 md:px-6 bg-gradient-to-br from-green-50 to-blue-50">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-8 md:mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 md:mb-4">
               Why Our Programs Work
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-base md:text-lg text-gray-600">
               Evidence-based approaches with measurable impact
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
             {[
               {
                 icon: MapPin,
@@ -326,13 +327,13 @@ const Projects = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.2 }}
-                className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all text-center"
+                className="bg-white p-6 md:p-8 rounded-xl shadow-lg hover:shadow-xl transition-all text-center"
               >
-                <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <item.icon className="w-8 h-8 text-green-700" />
+                <div className="bg-green-100 w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+                  <item.icon className="w-7 h-7 md:w-8 md:h-8 text-green-700" />
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-gray-800">{item.title}</h3>
-                <p className="text-gray-600">{item.desc}</p>
+                <h3 className="text-lg md:text-xl font-bold mb-2 text-gray-800">{item.title}</h3>
+                <p className="text-sm md:text-base text-gray-600">{item.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -340,33 +341,33 @@ const Projects = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 px-6 bg-gradient-to-r from-green-700 to-green-900 text-white">
+      <section className="py-12 md:py-16 px-4 md:px-6 bg-gradient-to-r from-green-700 to-green-900 text-white">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6">
               Ready to Make a Difference?
             </h2>
-            <p className="text-xl mb-8 text-green-100">
+            <p className="text-base md:text-xl mb-6 md:mb-8 text-green-100">
               Support any of our programs and be part of the transformation
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
               <Link 
                 to="/donate"
-                className="bg-yellow-500 hover:bg-yellow-600 text-white px-8 py-4 rounded-full font-bold text-lg shadow-xl transition-all transform hover:scale-105 flex items-center justify-center gap-2"
+                className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-bold text-base md:text-lg shadow-xl transition-all transform hover:scale-105 flex items-center justify-center gap-2"
               >
-                <Heart size={24} />
+                <Heart size={20} className="md:w-6 md:h-6" />
                 Donate Now
-                <ArrowRight size={20} />
+                <ArrowRight size={18} className="md:w-5 md:h-5" />
               </Link>
               <Link 
                 to="/get-involved/volunteer"
-                className="bg-white/10 backdrop-blur-sm hover:bg-white/20 border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg transition-all flex items-center justify-center gap-2"
+                className="bg-white/10 backdrop-blur-sm hover:bg-white/20 border-2 border-white text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-bold text-base md:text-lg transition-all flex items-center justify-center gap-2"
               >
-                <Users size={24} />
+                <Users size={20} className="md:w-6 md:h-6" />
                 Volunteer With Us
               </Link>
             </div>

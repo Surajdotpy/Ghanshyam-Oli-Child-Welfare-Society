@@ -44,6 +44,7 @@ import Coverage from "./pages/Media/Coverage";
 // Other Pages
 import Contact from "./pages/Contact";
 import Donate from "./pages/Donate";
+import Footer from "./pages/Footer";
 
 function App() {
   return (
@@ -107,6 +108,7 @@ function App() {
           } />
         </Routes>
       </main>
+      <Footer />
     </Router>
   );
 }
